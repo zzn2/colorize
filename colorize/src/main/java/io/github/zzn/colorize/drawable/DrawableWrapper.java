@@ -1,4 +1,4 @@
-package io.github.zzn2.colorize.drawable;
+package io.github.zzn.colorize.drawable;
 
 import android.graphics.drawable.ClipDrawable;
 import android.graphics.drawable.Drawable;

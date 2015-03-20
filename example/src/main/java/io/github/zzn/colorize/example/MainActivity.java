@@ -1,10 +1,7 @@
-package io.github.zzn2.colorize.example;
+package io.github.zzn.colorize.example;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-
 
 public class MainActivity extends Activity {
 
