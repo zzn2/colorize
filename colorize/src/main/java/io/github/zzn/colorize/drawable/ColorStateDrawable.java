@@ -12,7 +12,7 @@ public class ColorStateDrawable extends DrawableWrapper {
     private ColorStateList mColorStateList;
 
     public ColorStateDrawable(Drawable drawable, ColorStateList colorStateList) {
-        super(drawable);
+        super(drawable.mutate());
         mColorStateList = colorStateList;
     }
 
