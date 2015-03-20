@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Colorize</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello colorful world!</string>
+    <string name="button">Button</string>
+    <string name="button_disabled">Disabled</string>
 </resources>

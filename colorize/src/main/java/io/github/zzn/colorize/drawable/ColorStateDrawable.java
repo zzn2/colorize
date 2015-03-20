@@ -9,7 +9,7 @@ import android.graphics.drawable.Drawable;
  * A Drawable which can change color according to specified ColorStateList.
  */
 public class ColorStateDrawable extends DrawableWrapper {
-    private ColorStateList mColorStateList;
+    private final ColorStateList mColorStateList;
 
     public ColorStateDrawable(Drawable drawable, ColorStateList colorStateList) {
         super(drawable.mutate());
