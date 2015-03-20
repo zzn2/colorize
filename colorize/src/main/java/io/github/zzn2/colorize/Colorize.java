@@ -1,11 +1,11 @@
-package io.github.zzn.colorize;
+package io.github.zzn2.colorize;
 
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import io.github.zzn.colorize.drawable.ColorStateDrawable;
+import io.github.zzn2.colorize.drawable.ColorStateDrawable;
 
 
 /**

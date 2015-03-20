@@ -1,4 +1,4 @@
-package io.github.zzn.colorize.example;
+package io.github.zzn2.colorize.example;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import io.github.zzn.colorize.Colorize;
+import io.github.zzn2.colorize.Colorize;
 
 public class MainActivity extends Activity {
 
