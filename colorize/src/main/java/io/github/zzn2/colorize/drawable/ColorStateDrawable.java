@@ -9,11 +9,21 @@ import android.graphics.drawable.Drawable;
  * A Drawable which can change color according to specified ColorStateList.
  */
 public class ColorStateDrawable extends DrawableWrapper {
-    private final ColorStateList mColorStateList;
+    private ColorStateList mColorStateList;
 
     public ColorStateDrawable(Drawable drawable, ColorStateList colorStateList) {
         super(drawable.mutate());
         mColorStateList = colorStateList;
+    }
+
+    /**
+     * Apply new ColorStateList to ColorStateDrawable.
+     *
+     * @param newColor new ColorStateList.
+     */
+    public void updateColor(ColorStateList newColor) {
+        mColorStateList = newColor;
+        updateColorFilter();
     }
 
     @Override
@@ -23,9 +33,13 @@ public class ColorStateDrawable extends DrawableWrapper {
 
     @Override
     protected boolean onStateChange(int[] states) {
-        if (mColorStateList != null) {
-            setColorFilter(mColorStateList.getColorForState(states, Color.WHITE), PorterDuff.Mode.MULTIPLY);
-        }
+        updateColorFilter();
         return super.onStateChange(states);
+    }
+
+    private void updateColorFilter() {
+        if (mColorStateList != null) {
+            setColorFilter(mColorStateList.getColorForState(getState(), Color.WHITE), PorterDuff.Mode.MULTIPLY);
+        }
     }
 }

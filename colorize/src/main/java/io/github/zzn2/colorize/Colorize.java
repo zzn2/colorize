@@ -30,8 +30,12 @@ public class Colorize {
             Drawable[] drawables = textView.getCompoundDrawables();
             for (int i = 0; i < 4; i++) {
                 Drawable drawable = drawables[i];
-                if (drawable != null && !(drawable instanceof ColorStateDrawable)) {
-                    drawables[i] = new ColorStateDrawable(drawable, textView.getTextColors());
+                if (drawable != null) {
+                    if (!(drawable instanceof ColorStateDrawable)) {
+                        drawables[i] = new ColorStateDrawable(drawable, textView.getTextColors());
+                    } else {
+                        ((ColorStateDrawable) drawables[i]).updateColor(textView.getTextColors());
+                    }
                 }
             }
 
