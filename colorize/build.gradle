@@ -1,4 +1,24 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.0.0'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.1'
+        classpath 'com.github.dcendents:android-maven-plugin:1.2'
+    }
+}
+
+repositories {
+    jcenter()
+}
+
+group = 'io.github.zzn2'
+version = '0.0.1'
+
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 
 android {
     compileSdkVersion 22
@@ -20,3 +40,77 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }
+
+def siteUrl = 'https://github.com/zzn2/colorize'
+def gitUrl = 'https://github.com/zzn2/colorize.git'
+
+bintray {
+    user = BINTRAY_USER
+    key = BINTRAY_API_KEY
+
+    configurations = ['archives']
+    pkg {
+        repo = 'colorize'
+            name = project.name
+            desc = 'Colorize your compound drawables'
+            websiteUrl = siteUrl
+            issueTrackerUrl = 'https://github.com/zzn2/colorize/issues'
+            vcsUrl = gitUrl
+            licenses = ['Apache-2.0']
+            labels = ['android']
+            publicDownloadNumbers = true
+    }
+}
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                url siteUrl
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'zzn2'
+                        name 'Zhidong Zhu'
+                        email 'zhuzhidong@gmail.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+task findConventions << {
+    println project.getConvention()
+}
+
